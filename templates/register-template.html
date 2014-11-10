@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+
+        <!--REGISTRATION FORM-->
+        <form name="registerForm" class="form-horizontal" novalidate ng-submit="SubmitForm(registerForm.$valid)">
+            <fieldset>
+                <legend class="text-center">Registration Form</legend>
+
+                <!--Name-->
+                <div class="form-group has-feedback"
+                     ng-class="{
+                         'has-error': registerForm.name.$invalid && !registerForm.name.$pristine,
+                         'has-success': registerForm.name.$valid
+                     }">
+                    <label for="register-form-name" class="col-md-3" >Name</label>
+                    <div class="col-md-9">
+                        <input type="text" name="name" id="register-form-name" class="form-control" required ng-model="user.name"/>
+                        <span ng-show="registerForm.name.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                        <span ng-show="registerForm.name.$invalid && registerForm.name.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span ng-show="registerForm.name.$pristine" class="help-block">Enter your name.</span>
+                        <span ng-show="registerForm.name.$invalid && registerForm.name.$dirty" class="help-block">Name is required.</span>
+                    </div>
+                </div>
+
+                <!--Username-->
+                <div class="form-group  has-feedback"
+                     ng-class="{
+                        'has-error': registerForm.username.$invalid && !registerForm.username.$pristine,
+                        'has-success': registerForm.username.$valid
+                     }">
+                    <label for="register-form-username" class="col-md-3" >Username</label>
+                    <div class="col-md-9">
+                        <input type="text" name="username" id="register-form-username" class="form-control" required ng-model="user.username" ng-minlength="3" ng-maxlength="8"/>
+                        <span ng-show="registerForm.username.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                        <span ng-show="registerForm.username.$invalid && registerForm.username.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span ng-show="registerForm.username.$pristine" class="help-block">Must be between 3 and 8 characters.</span>
+                        <span ng-show="registerForm.username.$error.minlength && registerForm.username.$dirty" class="help-block">Username is too short.</span>
+                        <span ng-show="registerForm.username.$error.maxlength && registerForm.username.$dirty" class="help-block">Username is too long.</span>
+                    </div>
+                </div>
+
+                <!--Password-->
+                <div class="form-group  has-feedback"
+                     ng-class="{
+                        'has-error': registerForm.password.$invalid && registerForm.password.$dirty,
+                        'has-success': registerForm.password.$valid
+                     }">
+                    <label for="register-form-password" class="col-md-3">Password</label>
+                    <div class="col-md-9">
+                        <input type="password" name="password" id="register-form-password" class="form-control" required ng-model="user.password" ng-minlength="6"/>
+                        <span ng-show="registerForm.password.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                        <span ng-show="registerForm.password.$invalid && registerForm.password.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span ng-show="registerForm.password.$pristine" class="help-block">Must be 6 or more characters.</span>
+                        <span ng-show="registerForm.password.$error.minlength && registerForm.password.$dirty" class="help-block">Password must be at least 6 characters.</span>
+                    </div>
+                </div>
+
+                <!--Repeat Password-->
+                <div class="form-group  has-feedback"
+                     ng-class="{
+                            'has-error': registerForm.repeatPassword.$error.passwordMatch,
+                            'has-success': registerForm.repeatPassword.$valid
+                        }">
+                    <label for="register-form-repeat-password" class="col-md-3">Repeat Password</label>
+                    <div class="col-md-9">
+                        <input type="password" name="repeatPassword" id="register-form-repeat-password" class="form-control" required ng-model="user.repeatPassword" password-match="register-form-password" ng-minlength="6"/>
+                        <span ng-show="registerForm.repeatPassword.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                        <span ng-show="registerForm.repeatPassword.$invalid && registerForm.repeatPassword.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span ng-show="registerForm.repeatPassword.$pristine" class="help-block">You have to repeat your password.</span>
+                        <span ng-show="registerForm.repeatPassword.$error.passwordMatch && registerForm.repeatPassword.$dirty" class="help-block">The password don't match.</span> <!--TODO: use the new directive-->
+                    </div>
+                </div>
+
+                <!--Register button-->
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-default col-xs-6 col-xs-offset-3" ng-disabled="registerForm.$invalid">Register</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
